@@ -69,4 +69,15 @@ function pintarClientes() {
     document.getElementById("tablaClientes").innerHTML = contenido;
 }
 
+function buscarCliente(cedula) {
+
+    for (let i = 0; i < clientes.length; i++) {
+
+        if (clientes[i].cedula == cedula) {
+            return clientes[i];
+        }
+    }
+
+    return null;
+}
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
