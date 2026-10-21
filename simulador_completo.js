@@ -39,17 +39,23 @@ function guardarCliente() {
     let ingresos = recuperarFloat("ingresosCliente");
     let egresos = recuperarFloat("egresosCliente");
 
-    let cliente = {
-        cedula: cedula,
-        nombre: nombre,
-        apellido: apellido,
-        ingresos: ingresos,
-        egresos: egresos
-    };
-
-    clientes.push(cliente);
+    if (clienteSeleccionado == null) {
+        let cliente = {
+            cedula: cedula,
+            nombre: nombre,
+            apellido: apellido,
+            ingresos: ingresos,
+            egresos: egresos
+        };
+        clientes.push(cliente);
+    } else {
+        clienteSeleccionado.nombre = nombre;
+        clienteSeleccionado.apellido = apellido;
+        clienteSeleccionado.ingresos = ingresos;
+        clienteSeleccionado.egresos = egresos;
+        clienteSeleccionado = null;
+    }
     pintarClientes();
-
 }
 
 function pintarClientes() {
@@ -62,7 +68,11 @@ function pintarClientes() {
         contenido += "<td>" + clientes[i].apellido + "</td>";
         contenido += "<td>" + clientes[i].ingresos + "</td>";
         contenido += "<td>" + clientes[i].egresos + "</td>";
-        contenido += "<td><button>Actualizar</button></td>";
+        contenido += `<td>
+          <button onclick="seleccionarCliente('${clientes[i].cedula}')">
+              Actualizar
+          </button>
+          </td>`;
         contenido += "</tr>";
     }
 
