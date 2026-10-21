@@ -48,8 +48,25 @@ function guardarCliente() {
     };
 
     clientes.push(cliente);
+    pintarClientes();
 
-    console.log(clientes);
+}
+
+function pintarClientes() {
+    let contenido = "";
+
+    for (let i = 0; i < clientes.length; i++) {
+        contenido += "<tr>";
+        contenido += "<td>" + clientes[i].cedula + "</td>";
+        contenido += "<td>" + clientes[i].nombre + "</td>";
+        contenido += "<td>" + clientes[i].apellido + "</td>";
+        contenido += "<td>" + clientes[i].ingresos + "</td>";
+        contenido += "<td>" + clientes[i].egresos + "</td>";
+        contenido += "<td><button>Actualizar</button></td>";
+        contenido += "</tr>";
+    }
+
+    document.getElementById("tablaClientes").innerHTML = contenido;
 }
 
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
