@@ -1,128 +1,128 @@
 
-  let clientes = [];
-  let creditos = [];
+let clientes = [];
+let creditos = [];
 
-  let tasaInteres = 15;
-  let clienteSeleccionado = null;
-  let cuotaCalculada = 0;
-  let montoCalculado = 0;
-  let plazoCalculado = 0;
-  let creditoAprobado = false;
+let tasaInteres = 15;
+let clienteSeleccionado = null;
+let cuotaCalculada = 0;
+let montoCalculado = 0;
+let plazoCalculado = 0;
+let creditoAprobado = false;
 
-  function ocultarSecciones() {
-    let secciones = document.querySelectorAll("section");
+function ocultarSecciones() {
+  let secciones = document.querySelectorAll("section");
 
-    for (let i = 0; i < secciones.length; i++) {
-        secciones[i].classList.remove("activa");
-    }
+  for (let i = 0; i < secciones.length; i++) {
+    secciones[i].classList.remove("activa");
+  }
 }
 
 function mostrarSeccion(id) {
-    ocultarSecciones();
-    document.getElementById(id).classList.add("activa");
+  ocultarSecciones();
+  document.getElementById(id).classList.add("activa");
 }
 
 function guardarTasa() {
-    let nuevaTasa = recuperarFloat("tasaInteres");
+  let nuevaTasa = recuperarFloat("tasaInteres");
 
-    if (nuevaTasa >= 10 && nuevaTasa <= 20) {
-        tasaInteres = nuevaTasa;
-        mostrarTexto("mensajeTasa", "Tasa configurada correctamente: " + tasaInteres + "%");
-    } else {
-        mostrarTexto("mensajeTasa", "La tasa debe estar entre 10% y 20%");
-    }
+  if (nuevaTasa >= 10 && nuevaTasa <= 20) {
+    tasaInteres = nuevaTasa;
+    mostrarTexto("mensajeTasa", "Tasa configurada correctamente: " + tasaInteres + "%");
+  } else {
+    mostrarTexto("mensajeTasa", "La tasa debe estar entre 10% y 20%");
+  }
 }
 function guardarCliente() {
-    let cedula = recuperaraTexto("cedulaCliente");
-    let nombre = recuperaraTexto("nombreCliente");
-    let apellido = recuperaraTexto("apellidoCliente");
-    let ingresos = recuperarFloat("ingresosCliente");
-    let egresos = recuperarFloat("egresosCliente");
+  let cedula = recuperaraTexto("cedulaCliente");
+  let nombre = recuperaraTexto("nombreCliente");
+  let apellido = recuperaraTexto("apellidoCliente");
+  let ingresos = recuperarFloat("ingresosCliente");
+  let egresos = recuperarFloat("egresosCliente");
 
-    if (clienteSeleccionado == null) {
-        let cliente = {
-            cedula: cedula,
-            nombre: nombre,
-            apellido: apellido,
-            ingresos: ingresos,
-            egresos: egresos
-        };
-        clientes.push(cliente);
-    } else {
-        clienteSeleccionado.nombre = nombre;
-        clienteSeleccionado.apellido = apellido;
-        clienteSeleccionado.ingresos = ingresos;
-        clienteSeleccionado.egresos = egresos;
-        clienteSeleccionado = null;
-    }
-    pintarClientes();
+  if (clienteSeleccionado == null) {
+    let cliente = {
+      cedula: cedula,
+      nombre: nombre,
+      apellido: apellido,
+      ingresos: ingresos,
+      egresos: egresos
+    };
+    clientes.push(cliente);
+  } else {
+    clienteSeleccionado.nombre = nombre;
+    clienteSeleccionado.apellido = apellido;
+    clienteSeleccionado.ingresos = ingresos;
+    clienteSeleccionado.egresos = egresos;
+    clienteSeleccionado = null;
+  }
+  pintarClientes();
 }
 
 function pintarClientes() {
-    let contenido = "";
+  let contenido = "";
 
-    for (let i = 0; i < clientes.length; i++) {
-        contenido += "<tr>";
-        contenido += "<td>" + clientes[i].cedula + "</td>";
-        contenido += "<td>" + clientes[i].nombre + "</td>";
-        contenido += "<td>" + clientes[i].apellido + "</td>";
-        contenido += "<td>" + clientes[i].ingresos + "</td>";
-        contenido += "<td>" + clientes[i].egresos + "</td>";
-        contenido += `<td>
+  for (let i = 0; i < clientes.length; i++) {
+    contenido += "<tr>";
+    contenido += "<td>" + clientes[i].cedula + "</td>";
+    contenido += "<td>" + clientes[i].nombre + "</td>";
+    contenido += "<td>" + clientes[i].apellido + "</td>";
+    contenido += "<td>" + clientes[i].ingresos + "</td>";
+    contenido += "<td>" + clientes[i].egresos + "</td>";
+    contenido += `<td>
           <button onclick="seleccionarCliente('${clientes[i].cedula}')">
               Actualizar
           </button>
           </td>`;
-        contenido += "</tr>";
-    }
+    contenido += "</tr>";
+  }
 
-    document.getElementById("tablaClientes").innerHTML = contenido;
+  document.getElementById("tablaClientes").innerHTML = contenido;
 }
 
 function buscarCliente(cedula) {
 
-    for (let i = 0; i < clientes.length; i++) {
+  for (let i = 0; i < clientes.length; i++) {
 
-        if (clientes[i].cedula == cedula) {
-            return clientes[i];
-        }
+    if (clientes[i].cedula == cedula) {
+      return clientes[i];
     }
+  }
 
-    return null;
+  return null;
 }
 
 function seleccionarCliente(cedula) {
-    let cliente = buscarCliente(cedula);
+  let cliente = buscarCliente(cedula);
 
-    if (cliente != null) {
-        clienteSeleccionado = cliente;
+  if (cliente != null) {
+    clienteSeleccionado = cliente;
 
-        mostrarTextoEnCaja("cedulaCliente", cliente.cedula);
-        mostrarTextoEnCaja("nombreCliente", cliente.nombre);
-        mostrarTextoEnCaja("apellidoCliente", cliente.apellido);
-        mostrarTextoEnCaja("ingresosCliente", cliente.ingresos);
-        mostrarTextoEnCaja("egresosCliente", cliente.egresos);
-    }
+    mostrarTextoEnCaja("cedulaCliente", cliente.cedula);
+    mostrarTextoEnCaja("nombreCliente", cliente.nombre);
+    mostrarTextoEnCaja("apellidoCliente", cliente.apellido);
+    mostrarTextoEnCaja("ingresosCliente", cliente.ingresos);
+    mostrarTextoEnCaja("egresosCliente", cliente.egresos);
+  }
 }
 function limpiar() {
-    mostrarTextoEnCaja("cedulaCliente", "");
-    mostrarTextoEnCaja("nombreCliente", "");
-    mostrarTextoEnCaja("apellidoCliente", "");
-    mostrarTextoEnCaja("ingresosCliente", "");
-    mostrarTextoEnCaja("egresosCliente", "");
+  mostrarTextoEnCaja("cedulaCliente", "");
+  mostrarTextoEnCaja("nombreCliente", "");
+  mostrarTextoEnCaja("apellidoCliente", "");
+  mostrarTextoEnCaja("ingresosCliente", "");
+  mostrarTextoEnCaja("egresosCliente", "");
 
-    clienteSeleccionado = null;
+  clienteSeleccionado = null;
 }
 
 function buscarClienteCredito() {
-    let cedula = recuperaraTexto("buscarCedulaCredito");
+  let cedula = recuperaraTexto("buscarCedulaCredito");
 
-    let cliente = buscarCliente(cedula);
+  let cliente = buscarCliente(cedula);
 
-    if (cliente != null) {
-        clienteSeleccionado = cliente;
+  if (cliente != null) {
+    clienteSeleccionado = cliente;
 
-        document.getElementById("datosClienteCredito").innerHTML = `
+    document.getElementById("datosClienteCredito").innerHTML = `
             <h3>Datos del Cliente</h3>
             <p><strong>Cédula:</strong> ${cliente.cedula}</p>
             <p><strong>Nombre:</strong> ${cliente.nombre}</p>
@@ -131,58 +131,51 @@ function buscarClienteCredito() {
             <p><strong>Egresos:</strong> ${cliente.egresos}</p>
         `;
 
-    } else {
-        clienteSeleccionado = null;
-        mostrarTexto("datosClienteCredito", "Cliente no encontrado");
-    }
+  } else {
+    clienteSeleccionado = null;
+    mostrarTexto("datosClienteCredito", "Cliente no encontrado");
+  }
 }
 function calcularCredito() {
-    if (clienteSeleccionado == null) {
-        mostrarTexto("resultadoCredito", "Primero debe buscar un cliente");
-        return;
-    }
-    let monto = recuperarFloat("montoCredito");
-    let plazo = recuperarFloat("plazoCredito");
-    let disponible = calcularDisponible(
-        clienteSeleccionado.ingresos,
-        clienteSeleccionado.egresos
-    );
-    let capacidadPago = calcularCapacidadPago(disponible);
-    let interes = calcularInteresSimple(
-        monto,
-        tasaInteres,
-        plazo
-    );
-    let totalPagar = calcularTotalPagar(
-        monto,
-        interes
-    );
-    let cuotaMensual = calcularCuotaMensual(
-        totalPagar,
-        plazo
-    );
-    let aprobado = aprobarCredito(
-        capacidadPago,
-        cuotaMensual
-    );
-    montoCalculado = monto;
-    plazoCalculado = plazo;
-    cuotaCalculada = cuotaMensual;
-    creditoAprobado = aprobado;
 
-    let resultado;
+  if (clienteSeleccionado == null) {
+    mostrarTexto("resultadoCredito", "Primero debe buscar un cliente");
+    return;
+  }
 
-if (creditoAprobado == true) {
+  let monto = recuperarFloat("montoCredito");
+  let plazo = recuperarFloat("plazoCredito");
+
+  let disponible = calcularDisponible(clienteSeleccionado.ingresos, clienteSeleccionado.egresos);
+  let capacidadPago = calcularCapacidadPago(disponible);
+  let interes = calcularInteresSimple(monto, tasaInteres, plazo);
+  let totalPagar = calcularTotalPagar(monto, interes);
+  let cuotaMensual = calcularCuotaMensual(totalPagar, plazo);
+  let aprobado = aprobarCredito(capacidadPago, cuotaMensual);
+
+  montoCalculado = monto;
+  plazoCalculado = plazo;
+  cuotaCalculada = cuotaMensual;
+  creditoAprobado = aprobado;
+
+  let resultado = "RECHAZADO";
+
+  if (creditoAprobado == true) {
     resultado = "APROBADO";
-} else {
-    resultado = "RECHAZADO";
-}
+  }
 
-document.getElementById("resultadoCredito").innerHTML = `
-    Capacidad de pago: ${capacidadPago}<br>
-    Total a pagar: ${totalPagar}<br>
-    Cuota mensual: ${cuotaMensual}<br>
-    RESULTADO: ${resultado}
-`;
+  document.getElementById("resultadoCredito").innerHTML = `
+        Capacidad de pago: ${capacidadPago}<br>
+        Total a pagar: ${totalPagar}<br>
+        Cuota mensual: ${cuotaMensual}<br>
+        RESULTADO: ${resultado}
+    `;
+  let resultadoCredito = document.getElementById("resultadoCredito");
+
+  if (creditoAprobado == true) {
+    resultadoCredito.className = "aprobado";
+  } else {
+    resultadoCredito.className = "rechazado";
+  }
 }
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
