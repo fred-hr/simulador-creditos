@@ -9,5 +9,16 @@
   let plazoCalculado = 0;
   let creditoAprobado = false;
 
-  
+  function ocultarSecciones() {
+    let secciones = document.querySelectorAll("section");
+
+    for (let i = 0; i < secciones.length; i++) {
+        secciones[i].classList.remove("activa");
+    }
+}
+
+function mostrarSeccion(id) {
+    ocultarSecciones();
+    document.getElementById(id).classList.add("activa");
+}
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
