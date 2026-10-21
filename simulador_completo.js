@@ -80,4 +80,18 @@ function buscarCliente(cedula) {
 
     return null;
 }
+
+function seleccionarCliente(cedula) {
+    let cliente = buscarCliente(cedula);
+
+    if (cliente != null) {
+        clienteSeleccionado = cliente;
+
+        mostrarTextoEnCaja("cedulaCliente", cliente.cedula);
+        mostrarTextoEnCaja("nombreCliente", cliente.nombre);
+        mostrarTextoEnCaja("apellidoCliente", cliente.apellido);
+        mostrarTextoEnCaja("ingresosCliente", cliente.ingresos);
+        mostrarTextoEnCaja("egresosCliente", cliente.egresos);
+    }
+}
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
