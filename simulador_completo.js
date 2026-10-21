@@ -137,51 +137,52 @@ function buscarClienteCredito() {
     }
 }
 function calcularCredito() {
-
     if (clienteSeleccionado == null) {
         mostrarTexto("resultadoCredito", "Primero debe buscar un cliente");
         return;
     }
-
     let monto = recuperarFloat("montoCredito");
     let plazo = recuperarFloat("plazoCredito");
-
     let disponible = calcularDisponible(
         clienteSeleccionado.ingresos,
         clienteSeleccionado.egresos
     );
-
     let capacidadPago = calcularCapacidadPago(disponible);
-
     let interes = calcularInteresSimple(
         monto,
         tasaInteres,
         plazo
     );
-
     let totalPagar = calcularTotalPagar(
         monto,
         interes
     );
-
     let cuotaMensual = calcularCuotaMensual(
         totalPagar,
         plazo
     );
-
     let aprobado = aprobarCredito(
         capacidadPago,
         cuotaMensual
     );
-
     montoCalculado = monto;
     plazoCalculado = plazo;
     cuotaCalculada = cuotaMensual;
     creditoAprobado = aprobado;
 
-    console.log("Capacidad de pago:", capacidadPago);
-    console.log("Total a pagar:", totalPagar);
-    console.log("Cuota mensual:", cuotaMensual);
-    console.log("Crédito aprobado:", creditoAprobado);
+    let resultado;
+
+if (creditoAprobado == true) {
+    resultado = "APROBADO";
+} else {
+    resultado = "RECHAZADO";
+}
+
+document.getElementById("resultadoCredito").innerHTML = `
+    Capacidad de pago: ${capacidadPago}<br>
+    Total a pagar: ${totalPagar}<br>
+    Cuota mensual: ${cuotaMensual}<br>
+    RESULTADO: ${resultado}
+`;
 }
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
