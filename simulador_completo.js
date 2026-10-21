@@ -113,4 +113,17 @@ function limpiar() {
 
     clienteSeleccionado = null;
 }
+
+function buscarClienteCredito() {
+    let cedula = recuperaraTexto("buscarCedulaCredito");
+
+    let cliente = buscarCliente(cedula);
+
+    if (cliente != null) {
+        clienteSeleccionado = cliente;
+    } else {
+        clienteSeleccionado = null;
+        mostrarTexto("datosClienteCredito", "Cliente no encontrado");
+    }
+}
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
