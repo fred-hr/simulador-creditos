@@ -32,4 +32,24 @@ function guardarTasa() {
         mostrarTexto("mensajeTasa", "La tasa debe estar entre 10% y 20%");
     }
 }
+function guardarCliente() {
+    let cedula = recuperaraTexto("cedulaCliente");
+    let nombre = recuperaraTexto("nombreCliente");
+    let apellido = recuperaraTexto("apellidoCliente");
+    let ingresos = recuperarFloat("ingresosCliente");
+    let egresos = recuperarFloat("egresosCliente");
+
+    let cliente = {
+        cedula: cedula,
+        nombre: nombre,
+        apellido: apellido,
+        ingresos: ingresos,
+        egresos: egresos
+    };
+
+    clientes.push(cliente);
+
+    console.log(clientes);
+}
+
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
