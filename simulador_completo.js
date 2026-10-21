@@ -104,4 +104,13 @@ function seleccionarCliente(cedula) {
         mostrarTextoEnCaja("egresosCliente", cliente.egresos);
     }
 }
+function limpiar() {
+    mostrarTextoEnCaja("cedulaCliente", "");
+    mostrarTextoEnCaja("nombreCliente", "");
+    mostrarTextoEnCaja("apellidoCliente", "");
+    mostrarTextoEnCaja("ingresosCliente", "");
+    mostrarTextoEnCaja("egresosCliente", "");
+
+    clienteSeleccionado = null;
+}
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
