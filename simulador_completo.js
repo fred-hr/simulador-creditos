@@ -157,6 +157,13 @@ function calcularCredito() {
   plazoCalculado = plazo;
   cuotaCalculada = cuotaMensual;
   creditoAprobado = aprobado;
+  let botonAsignar = document.getElementById("btnAsignarCredito");
+
+  if (creditoAprobado == true) {
+    botonAsignar.disabled = false;
+  } else {
+    botonAsignar.disabled = true;
+  }
 
   let resultado = "RECHAZADO";
 
