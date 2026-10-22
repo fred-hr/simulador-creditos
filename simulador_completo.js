@@ -202,4 +202,16 @@ function asignarCredito() {
 
   console.log(creditos);
 }
+
+function buscarCreditos(cedula) {
+  let creditosCliente = [];
+
+  for (let i = 0; i < creditos.length; i++) {
+    if (creditos[i].cedula == cedula) {
+      creditosCliente.push(creditos[i]);
+    }
+  }
+
+  return creditosCliente;
+}
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
