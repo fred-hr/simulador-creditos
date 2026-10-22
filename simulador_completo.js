@@ -79,6 +79,24 @@ function pintarClientes() {
   document.getElementById("tablaClientes").innerHTML = contenido;
 }
 
+function pintarCreditos(creditos) {
+  let contenido = "";
+
+  for (let i = 0; i < creditos.length; i++) {
+    contenido += "<tr>";
+    contenido += "<td>" + creditos[i].cedula + "</td>";
+    contenido += "<td>" + creditos[i].nombre + "</td>";
+    contenido += "<td>" + creditos[i].apellido + "</td>";
+    contenido += "<td>" + creditos[i].monto + "</td>";
+    contenido += "<td>" + creditos[i].tasa + "%</td>";
+    contenido += "<td>" + creditos[i].plazo + "</td>";
+    contenido += "<td>" + creditos[i].cuota + "</td>";
+    contenido += "</tr>";
+  }
+
+  document.getElementById("tablaCreditos").innerHTML = contenido;
+}
+
 function buscarCliente(cedula) {
 
   for (let i = 0; i < clientes.length; i++) {
