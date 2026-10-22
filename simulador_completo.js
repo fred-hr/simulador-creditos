@@ -232,4 +232,12 @@ function buscarCreditos(cedula) {
 
   return creditosCliente;
 }
+
+function buscarCreditosCliente() {
+  let cedula = recuperaraTexto("buscarCedulaListado");
+
+  let creditosCliente = buscarCreditos(cedula);
+
+  pintarCreditos(creditosCliente);
+}
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
