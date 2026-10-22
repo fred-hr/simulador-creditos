@@ -6,7 +6,7 @@ let tasaInteres = 15;
 let clienteSeleccionado = null;
 let cuotaCalculada = 0;
 let montoCalculado = 0;
-let plazoCalculado = 0;
+let plazoIngresado = 0;
 let creditoAprobado = false;
 
 function ocultarSecciones() {
@@ -154,7 +154,7 @@ function calcularCredito() {
   let aprobado = aprobarCredito(capacidadPago, cuotaMensual);
 
   montoCalculado = monto;
-  plazoCalculado = plazo;
+  plazoIngresado = plazo;
   cuotaCalculada = cuotaMensual;
   creditoAprobado = aprobado;
   let botonAsignar = document.getElementById("btnAsignarCredito");
@@ -184,5 +184,22 @@ function calcularCredito() {
   } else {
     resultadoCredito.className = "rechazado";
   }
+}
+
+function asignarCredito() {
+
+  let credito = {
+    cedula: clienteSeleccionado.cedula,
+    nombre: clienteSeleccionado.nombre,
+    apellido: clienteSeleccionado.apellido,
+    monto: montoCalculado,
+    tasa: tasaInteres,
+    plazo: plazoIngresado,
+    cuota: cuotaCalculada
+  };
+
+  creditos.push(credito);
+
+  console.log(creditos);
 }
 //Para recuperar o mostrar información usar los métodos de la clase utilitarios, puede agregar métodos adicionales en utilitarios
